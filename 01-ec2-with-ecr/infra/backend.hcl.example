@@ -1,0 +1,10 @@
+# Backend Configuration Example
+# Copy this file to backend.hcl and update with your values
+# Or use environment variables with terraform init -backend-config flags
+
+bucket         = "cloud-lab-terraform-state"
+key            = "01-ec2-with-ecr/terraform.tfstate"
+dynamodb_table = "cloud-lab-terraform-state-lock"
+region         = "eu-central-1"
+encrypt        = true
+

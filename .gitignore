@@ -1,0 +1,37 @@
+# Terraform state files
+*.tfstate
+*.tfstate.*
+
+# Terraform directory
+.terraform/
+bin/
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Exclude override files (used for local overrides)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
+
+# Ignore tfvars files (may contain sensitive data)
+*.tfvars
+*.tfvars.json
+*.pem
+dev.txt
+
+upload.sh
+
+# Keep the lock file for reproducibility (comment out if you want to ignore it)
+# .terraform.lock.hcl
+
+init.sh
+.dev/
+
+*.zip

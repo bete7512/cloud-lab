@@ -1,0 +1,21 @@
+# AWS Configuration
+aws_region = "eu-central-1"
+
+# Terraform State Configuration
+# IMPORTANT: Choose unique bucket and table names that don't conflict with existing resources
+state_bucket_name    = "your-unique-terraform-state-bucket-name"
+state_lock_table_name = "your-unique-terraform-state-lock-table-name"
+
+# GitHub OIDC Configuration
+role_name  = "github-actions-role"
+policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+github_repo = "your-org/your-repo"
+branch     = "main"
+
+# Common Tags
+common_tags = {
+  Project     = "cloud-lab"
+  Environment = "production"
+  ManagedBy   = "terraform"
+}
+

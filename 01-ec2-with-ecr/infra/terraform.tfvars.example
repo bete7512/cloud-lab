@@ -1,0 +1,10 @@
+# Terraform Variables
+# Copy this to terraform.tfvars and update with your values
+
+# Backend Configuration (for local development)
+# These values are used by init.sh script
+backend_bucket         = "cloud-lab-terraform-state"
+backend_key            = "01-ec2-with-ecr/terraform.tfstate"
+backend_dynamodb_table = "cloud-lab-terraform-state-lock"
+backend_region         = "eu-central-1"
+
