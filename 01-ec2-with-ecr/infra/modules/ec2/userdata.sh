@@ -19,8 +19,7 @@ if ! systemctl is-active --quiet amazon-ssm-agent; then
 fi
 
 # Remove default nginx configuration
-rm -f /etc/nginx/sites-enabled/default
-rm -f /etc/nginx/sites-enabled/default.conf
+rm -f /etc/nginx/sites-available/default*
 
 # Create new default.conf for reverse proxy (port 80 -> 8080)
 cat > /etc/nginx/sites-available/default.conf << 'EOF'
@@ -57,7 +56,7 @@ systemctl start docker
 systemctl enable docker
 
 # Add ubuntu user to docker group (so they can run docker without sudo)
-usermod -aG docker ubuntu
+sudo usermod -aG docker ubuntu
 
 echo "User-data script completed successfully!"
 echo "Nginx configured to forward port 80 to 8080"
