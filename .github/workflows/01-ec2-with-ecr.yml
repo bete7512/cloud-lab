@@ -40,12 +40,6 @@ jobs:
           TF_BACKEND_DYNAMODB_TABLE="${{ secrets.TF_BACKEND_DYNAMODB_TABLE }}"
           TF_BACKEND_REGION="${{ secrets.TF_BACKEND_REGION }}"
           
-          # Set defaults if secrets are empty
-          TF_BACKEND_BUCKET=${TF_BACKEND_BUCKET:-cloud-lab-terraform-state}
-          TF_BACKEND_KEY=${TF_BACKEND_KEY:-01-ec2-with-ecr/terraform.tfstate}
-          TF_BACKEND_DYNAMODB_TABLE=${TF_BACKEND_DYNAMODB_TABLE:-cloud-lab-terraform-state-lock}
-          TF_BACKEND_REGION=${TF_BACKEND_REGION:-${{ secrets.AWS_REGION }}}
-          
           terraform init \
             -backend-config="bucket=$TF_BACKEND_BUCKET" \
             -backend-config="key=$TF_BACKEND_KEY" \
@@ -121,12 +115,6 @@ jobs:
           TF_BACKEND_KEY="${{ secrets.TF_BACKEND_KEY }}"
           TF_BACKEND_DYNAMODB_TABLE="${{ secrets.TF_BACKEND_DYNAMODB_TABLE }}"
           TF_BACKEND_REGION="${{ secrets.TF_BACKEND_REGION }}"
-          
-          # Set defaults if secrets are empty
-          TF_BACKEND_BUCKET=${TF_BACKEND_BUCKET:-cloud-lab-terraform-state}
-          TF_BACKEND_KEY=${TF_BACKEND_KEY:-01-ec2-with-ecr/terraform.tfstate}
-          TF_BACKEND_DYNAMODB_TABLE=${TF_BACKEND_DYNAMODB_TABLE:-cloud-lab-terraform-state-lock}
-          TF_BACKEND_REGION=${TF_BACKEND_REGION:-${{ secrets.AWS_REGION }}}
           
           terraform init \
             -backend-config="bucket=$TF_BACKEND_BUCKET" \
