@@ -7,6 +7,11 @@ terraform {
       version = "~> 5.0"
     }
   }
+
+  backend "s3" {
+    # Run: terraform init -backend-config=backend.hcl
+    encrypt = true
+  }
 }
 
 provider "aws" {
