@@ -62,3 +62,8 @@ module "iam" {
   iam_role_name = "ec2-instance-role"
   ecr_repository_arn = module.ecr.ecr_repository_arn
 }
+
+module "config" {
+  source = "./modules/config"
+  instance_id = module.ec2.ec2_instance_id
+}
