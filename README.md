@@ -1,44 +1,30 @@
 # Cloud Lab
 
-A collection of infrastructure-as-code projects demonstrating AWS deployments using Terraform and CI/CD pipelines.
+Infrastructure-as-code projects for AWS deployments using Terraform and CI/CD.
 
 ## Projects
 
+---------------------------------------------------------------------------------------------------------------------------
 ### [01-ec2-with-ecr](./01-ec2-with-ecr/README.md)
 
-**Deploy Go App with Terraform & GitHub Actions**
-
-A complete infrastructure-as-code solution for deploying a containerized Go application to AWS EC2 using Terraform and GitHub Actions CI/CD.
+Deploy a Go app to EC2 with automated CI/CD via GitHub Actions.
 
 **Architecture:**
 ```
-User Push → GitHub Actions (CI/CD) → ECR (Container Registry) → EC2 (Docker + Nginx)
-                                              ↓
-                                         SSM (Deploy)
+User Push → GitHub Actions → ECR → EC2 (Docker + Nginx)
+                    ↓
+                SSM Deploy
 ```
 
-**Key Components:**
-- EC2 instance with Docker and Nginx reverse proxy
-- ECR repository for container images
-- GitHub Actions workflow with OIDC authentication
-- IAM roles for secure ECR access and SSM deployment
-- Terraform remote state with S3 and DynamoDB
+**Stack:** Terraform, AWS (EC2, ECR, IAM, SSM, S3, DynamoDB), GitHub Actions (OIDC), Docker, Nginx, Go
 
-**Technologies:** Terraform, AWS (EC2, ECR, IAM, SSM, S3, DynamoDB), GitHub Actions with aws oidc authentication, Docker, Nginx, Go
+---------------------------------------------------------------------------------------------------------------------------
 
 
+Each project has its own setup guide. Check the project's README for details.
 
-## Getting Started
-
-Each project has its own setup instructions. Navigate to the project folder and follow the README for detailed setup and deployment steps.
-
-## Prerequisites
-
+**Prerequisites:**
 - AWS CLI configured
 - Terraform >= 1.0
-- Docker (for local testing)
-- GitHub account and repository
-
-## License
-
-MIT
+- Docker
+- GitHub repository
