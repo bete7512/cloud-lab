@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 )
 
@@ -13,7 +12,6 @@ func main() {
 		w.Write([]byte("Hello, World!"))
 	})
 	mux.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println("Health check request received")
 		w.WriteHeader(http.StatusOK)
 		data := map[string]string{
 			"status": "ok",

@@ -13,7 +13,7 @@ permissions:
   contents: read
 
 jobs:
-  changes:
+  detect-changes:
     runs-on: ubuntu-latest
     outputs:
       infra: ${{ steps.filter.outputs.infra }}
@@ -30,7 +30,7 @@ jobs:
             app:
               - '01-ec2-with-ecr/app/**'
   terraform:
-    needs: changes
+    needs: detect-changes
     if: needs.changes.outputs.infra == 'true'
     runs-on: ubuntu-latest
     steps:
@@ -60,7 +60,7 @@ jobs:
           terraform apply -auto-approve
 
   build-and-push:
-    needs: [changes, terraform]
+    needs: [detect-changes, terraform]
     if: needs.changes.outputs.app == 'true'
     runs-on: ubuntu-latest
     env:
