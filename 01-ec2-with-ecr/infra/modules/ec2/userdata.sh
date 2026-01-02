@@ -18,11 +18,15 @@ if ! systemctl is-active --quiet amazon-ssm-agent; then
     systemctl start amazon-ssm-agent
 fi
 
-# Remove default nginx configuration
-sudo rm -f /etc/nginx/sites-available/default
+# Stop nginx if it's running (it might auto-start during installation)
+systemctl stop nginx || true
+
+# Remove default nginx configuration and ensure sites-available directory exists
+rm -f /etc/nginx/sites-available/default
+rm -f /etc/nginx/sites-enabled/default
 
 # Create new default.conf for reverse proxy (port 80 -> 8080)
-sudo cat > /etc/nginx/sites-available/default << 'EOF'
+cat > /etc/nginx/sites-available/default << 'EOF'
 server {
     listen 80;
     server_name _;
@@ -44,19 +48,22 @@ EOF
 # Create symbolic link to sites-enabled
 ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 
+# Remove any other default configs that might interfere
+rm -f /etc/nginx/sites-enabled/default.bak 2>/dev/null || true
+
 # Test nginx configuration
-sudo nginx -t
+nginx -t
 
 # Start and enable nginx
-sudo systemctl start nginx
-sudo systemctl enable nginx
+systemctl start nginx
+systemctl enable nginx
 
 # Start and enable docker
-sudo systemctl start docker
-sudo systemctl enable docker
+systemctl start docker
+systemctl enable docker
 
 # Add ubuntu user to docker group (so they can run docker without sudo)
-sudo usermod -aG docker ubuntu
+usermod -aG docker ubuntu
 
 echo "User-data script completed successfully!"
 echo "Nginx configured to forward port 80 to 8080"
